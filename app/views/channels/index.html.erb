@@ -1,0 +1,7 @@
+<h1>My channels:</h1>
+<%= link_to "New channel", new_channel_path %>
+<% @user.channels.each do |channel|%>
+    <h1><%= channel.name %></h1>
+    <p><%= channel.description%></p>
+    <%= link_to "Enter", channel_path(channel) %>
+<%end%>

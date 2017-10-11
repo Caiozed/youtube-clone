@@ -1,0 +1,20 @@
+<nav>
+    <ul class="navbar">
+        <li>&trade;<%= link_to "YouClone", root_path %></li>
+      <li>
+        <%= form_for :search do |f|%>
+            <%= f.text_field :query %>
+            <%= f.submit :query %>
+        <%end%>      
+      </li>  
+      
+      <li>
+        <% unless user_signed_in? %>
+            <%= link_to "Login", new_user_session_path %>
+        <%else%>
+            <%= link_to "Profile", profile_path(current_user.id) %>
+            <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
+        <%end%>
+      </li>
+    </ul>
+</nav>
