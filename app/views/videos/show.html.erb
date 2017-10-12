@@ -1,5 +1,6 @@
 <h1><%= @video.name %></h1>
-    <%= video_tag @video.video_file.url, controls: true%>
+    <%= video_tag @video.video_file.url, controls: true, autoplay: true, width: "800", height: "400"%>
 <p><%= @video.description %></p>
-
-<%= link_to "Delete", channel_video_path(params[:channel_id], @video), method: :delete, data: {confirm: "Are you sure ?"}%>
+<% if current_user == @video.channel.user %>
+    <%= link_to "Delete", channel_video_path(params[:channel_id], @video), method: :delete, data: {confirm: "Are you sure ?"} %>
+<%end%>

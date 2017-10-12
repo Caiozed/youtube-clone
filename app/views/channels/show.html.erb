@@ -1,5 +1,10 @@
 <h1><%= @channel.name %></h1>
-<%= link_to "Edit", edit_channel_path(@channel) %>
-<%= link_to "My Videos", channel_videos_path(@channel) %>
-<%= link_to "Add new video", new_channel_video_path(@channel) %>
-<%= link_to "Delete", channel_path(@channel), method: :delete, data: {confirm: "Are you sure?"}%>
+<% if current_user == @channel.user %>
+    <%= link_to "Edit", edit_channel_path(@channel) %>
+    <%= link_to "Add new video", new_channel_video_path(@channel) %>
+    <%= link_to "Delete", channel_path(@channel), method: :delete, data: {confirm: "Are you sure?"}%>
+    <div class="row">
+        <%= render @channel.videos %>
+    </div>
+<%end%>
+
