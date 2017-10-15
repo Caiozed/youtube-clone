@@ -1,0 +1,6 @@
+<% unless @videos.nil? %>
+    <h1 class="h1">Found <%= pluralize(@videos.length, "video") %>: </h1>
+    <%= render "video"%>
+<%else%>
+    <h1>No results found</h1>
+<%end%>

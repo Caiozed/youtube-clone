@@ -1,14 +1,20 @@
 <nav>
-    <ul class="navbar">
-        <li>&trade;<%= link_to "YouClone", root_path %></li>
+    <ul class="navbar fixed-top navbar-dark bg-dark">
+        
+        <li class="navbar-left">
+            <button class="navbar-toggler" type="button">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            &trade;<%= link_to "YouClone", root_path %>
+        </li>
       <li>
-        <%= form_for :search do |f|%>
+        <%= form_for :search, url: search_path, method: :GET do |f|%>
             <%= f.text_field :query %>
-            <%= f.submit :query %>
+            <%= f.submit "Search" %>
         <%end%>      
       </li>  
       
-      <li>
+      <li class="navbar-right">
         <% unless user_signed_in? %>
             <%= link_to "Login", new_user_session_path %>
         <%else%>

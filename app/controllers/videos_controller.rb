@@ -11,6 +11,11 @@ class VideosController < ApplicationController
     
     def show
         @video = Video.find(params[:id])
+        @comments = @video.comments
+        @comment = Comment.new()
+       if user_signed_in? 
+           @subscription = Subscription.find_by(subscriber_id: current_user.id, channel_id: @video.channel.id)
+       end
     end
     
     def edit
@@ -20,7 +25,7 @@ class VideosController < ApplicationController
     def create 
         @video = video_build
         if @video.save
-            redirect_to channel_videos_path(params[:channel_id])
+            redirect_to channels_path
         else
             render :new
         end

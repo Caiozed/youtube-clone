@@ -1,5 +1,11 @@
 class HomeController < ApplicationController
   def index
-    @videos = Video.order(updated_at: :desc)
+    @videos = Video.recent
   end
+  
+  def search
+    query = params[:search][:query]
+    @videos = Video.where("name LIKE ?", "%#{query}%")
+  end
+  
 end

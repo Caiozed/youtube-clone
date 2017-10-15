@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   resources :channels do 
      resources :videos
   end
+  resources :comments
+  resources :subscriptions
+  get "search", to: "home#search", as: :search
   get "user/:id", to: "users#profile", as: :profile
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -1,0 +1,12 @@
+<div class="search-container">
+    <% @videos.each do |video|%>
+    <div class="video">
+        <%= link_to image_tag(video.thumbnail.url), channel_video_path(video.channel, video), class: "video-image"%>
+        <div class="video-info">
+            <h2 class="video-title"><%= video.name %></h2>
+            <p class="channel-name"><%= link_to video.channel.name, video.channel %> • <%= time_ago_in_words(video.created_at) %></p>
+            <p><%= video.description %></p>
+        </div>
+    </div>
+    <%end%>
+</div>
