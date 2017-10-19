@@ -1,8 +1,9 @@
-<div class="col">
-    <h2><%= video.name %></h2>
+<div class="video">
     <%= link_to image_tag( video.thumbnail.url, width: 200, height: 150), channel_video_path(video.channel, video)%>
+    <h2 class="h2"><%= video.name %></h2>
     <% if current_user == video.channel.user %>
-        <%= link_to "Edit", edit_channel_video_path(video.channel, video) %>
+        <p><%= link_to "Edit", edit_channel_video_path(video.channel, video), class:"btn btn-primary" %></p>
     <%end%>
     <p><%= link_to video.channel.name, video.channel %></p>
+    <p class="channel-name"><%= time_ago_in_words(video.created_at) %> ago</p>
 </div>

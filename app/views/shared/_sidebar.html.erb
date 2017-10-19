@@ -1,7 +1,14 @@
 <div class="sidebar">
+    <div class="home">
+        <%= link_to "Home", root_path, class:"block-link"%>
+    </div>
     <%if user_signed_in? %>
         <% current_user.subscribed_channels.each do |channel|%>
-           <p><span>&copy;</span> <%= link_to channel.name, channel %> <span></span></p>
+        <div>
+            <a class="block-link" href="<%= channel_path(channel)%>">
+                <p><span><%= image_tag channel.image.url, class: "channel-image-thumb" %> <%=  channel.name %> </span></p>
+            </a>
+        </div>
         <%end%>
     <%end%>
 </div>

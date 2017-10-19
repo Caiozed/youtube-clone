@@ -1,4 +1,5 @@
 <%= form_for @video, url: path do |f|%>
+     <%= render partial: "shared/errors", locals: {model: @video} %>
     <%= f.label :name %>
     <%= f.text_field :name %>
     
@@ -10,5 +11,5 @@
     
     <%= f.label :video_file%>
     <%= f.file_field :video_file %>
-    <%= f.submit "Upload video"%>
+    <%= f.submit "Upload video", class: "btn btn-primary"%>
 <%end%>

@@ -9,8 +9,8 @@
         </li>
       <li>
         <%= form_for :search, url: search_path, method: :GET do |f|%>
-            <%= f.text_field :query %>
-            <%= f.submit "Search" %>
+            <%= f.text_field :query, class: "search-bar"%>
+            <%= f.submit "Search", class: "btn btn-primary" %>
         <%end%>      
       </li>  
       
@@ -18,7 +18,7 @@
         <% unless user_signed_in? %>
             <%= link_to "Login", new_user_session_path %>
         <%else%>
-            <%= link_to "Profile", profile_path(current_user.id) %>
+            <%= link_to "Profile", channels_path %>
             <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
         <%end%>
       </li>

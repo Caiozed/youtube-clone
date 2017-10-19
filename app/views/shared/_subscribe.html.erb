@@ -1,7 +1,7 @@
   <% if user_signed_in? %>
-    <%= form_for :subscription, url: subscriptions_path do |f| %>
+    <%= form_for :subscription, url: subscription_path do |f| %>
         <%= f.hidden_field :subscriber_id, value: current_user.id %>
         <%= f.hidden_field :channel_id, value: params[:channel_id] %>
-        <%= f.submit "Subscribe" %>
+        <%= f.submit "Subscribe", class: "btn btn-primary", id: "subscribe" %>
     <%end%>
 <%end%>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171013160156) do
+ActiveRecord::Schema.define(version: 20171015215816) do
 
   create_table "channels", force: :cascade do |t|
     t.string   "name"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20171013160156) do
     t.integer  "user_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.string   "image"
   end
 
   add_index "channels", ["name"], name: "index_channels_on_name", unique: true
@@ -32,19 +33,14 @@ ActiveRecord::Schema.define(version: 20171013160156) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "subscribes", force: :cascade do |t|
-    t.integer  "subscriber_id"
-    t.integer  "channel_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-  end
-
   create_table "subscriptions", force: :cascade do |t|
     t.integer  "subscriber_id"
     t.integer  "channel_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
+
+  add_index "subscriptions", ["subscriber_id", "channel_id"], name: "index_subscriptions_on_subscriber_id_and_channel_id", unique: true
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

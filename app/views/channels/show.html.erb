@@ -1,10 +1,21 @@
-<h1><%= @channel.name %></h1>
-<% if current_user == @channel.user %>
-    <%= link_to "Edit", edit_channel_path(@channel) %>
-    <%= link_to "Add new video", new_channel_video_path(@channel) %>
-    <%= link_to "Delete", channel_path(@channel), method: :delete, data: {confirm: "Are you sure?"}%>
-    <div class="row">
-        <%= render @channel.videos %>
+<h1 class="channel-pagename h1"><%= @channel.name %>
+    <div class="channel-options">
+        <% if is_user_subscribed? && current_user != @channel.user%>
+            <%= link_to "Unsubscribe", @subscription, method: :delete, class: "btn btn-warning" %>
+        <%end%>
+        <% if current_user == @channel.user %>
+            <%= link_to "Edit channel", edit_channel_path(@channel), class: "btn btn-primary" %>
+            <%= link_to "Add new video", new_channel_video_path(@channel), class: "btn btn-primary" %>
+            <%= link_to "Delete channel", channel_path(@channel), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger"%>
+        <%end%>
     </div>
-<%end%>
+</h1>
+
+<div class="videos-container">
+    <% if @channel.videos.length != 0 %>
+        <%= render @channel.videos %>
+    <%else%>
+        <h2 class="h1">No videos on channel</h2>
+    <%end%>
+</div>
 

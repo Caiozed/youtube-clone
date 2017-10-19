@@ -1,9 +1,13 @@
 <%= form_for @channel do |f|%>
+    <%= render partial: "shared/errors", locals: {model: @channel} %>
     <%= f.label :name %>
     <%= f.text_field :name %>
     
     <%= f.label :description %>
     <%= f.text_area :description %>
     
-    <%= f.submit "Create Channel" %>
+    <%= f.label :Image %>
+    <%= f.file_field :image %>
+    
+    <%= f.submit  class: "btn btn-primary" %>
 <%end%>

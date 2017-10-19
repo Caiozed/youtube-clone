@@ -1,0 +1,8 @@
+<% if model.errors.any? %>
+    <div class="alert alert-danger">
+        <h2 class="h2"><%= pluralize(model.errors.count, "error")%> were found. </h2>
+        <% model.errors.full_messages.each do |msg|%>
+            <li><%= msg %></li>
+        <%end%>
+    </div>
+<%end%>

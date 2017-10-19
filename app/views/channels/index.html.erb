@@ -1,7 +1,12 @@
-<h1>My channels:</h1>
-<%= link_to "New channel", new_channel_path %>
+<h1 class="h1">My channels:
+    <div class="channel-options">
+        <%= link_to "New channel", new_channel_path , class: "btn btn-primary" %>
+    </div>
+</h1>
 <% @user.channels.each do |channel|%>
-    <h1><%= channel.name %></h1>
-    <p><%= channel.description%></p>
-    <%= link_to "Enter", channel_path(channel) %>
+    <div class="channel">
+        <%= link_to image_tag(channel.image.url), channel_path(channel)%>
+        <h2 class="h2"><%= channel.name %></h2>
+        <p><%= channel.description%></p>
+    </div>
 <%end%>

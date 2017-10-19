@@ -1,15 +1,18 @@
 class SubscriptionsController < ApplicationController
-    
     def create
-        @subscription = Subscription.new(subscription_params) 
+        @subscription = Subscription.new() 
+        @subscription.channel_id = params[:channel_id]
+        @subscription.subscriber_id = current_user.id
         @subscription.save
-        redirect_to channel_path(@subscription.channel_id)
+        respond_to do |format|
+            format.html { render nothing: true } 
+        end
     end
     
     def destroy
         @subscription = Subscription.find(params[:id])
         @subscription.delete
-        redirect_to root_url
+        redirect_to root_path
     end
     
     private

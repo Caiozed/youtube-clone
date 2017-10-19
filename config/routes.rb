@@ -3,12 +3,11 @@ Rails.application.routes.draw do
   root "home#index"
   devise_for :users
   resources :channels do 
-     resources :videos
+     resources :videos, except: [:index]
   end
   resources :comments
   resources :subscriptions
   get "search", to: "home#search", as: :search
-  get "user/:id", to: "users#profile", as: :profile
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
